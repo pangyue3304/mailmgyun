@@ -1,0 +1,10 @@
+# 统一风格cli3没有 cli2有，可以拷贝cli2的拿过来用，统一代码的风格
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
