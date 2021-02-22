@@ -1,7 +1,10 @@
 <template>
-    <div class="goods-item" >
-      <div class="goodsitem" v-for="item in goodslist">
-        <img :src="item.show.img" alt="">
+    <div class="goods-item"  >
+      <div class="goodsitem"
+
+           v-for="(item,index) in goodslist"
+           @click="itemClick(item)">
+        <img :src="showImages(index)" alt="" @load="imagesLoad">
         <div>
           <p class="title">{{item.title }} </p>
           <div class="goodsitempc">
@@ -27,6 +30,31 @@
             return []
           }
         },
+      },
+      data(){
+          return{
+            itemgoods:null,
+          }
+      },
+      methods:{
+        imagesLoad(){
+          console.log('监听图片');
+          //事件总线
+          this.$bus.$emit('itemImgLoad',)
+
+        },
+        itemClick(item){
+
+          this.itemgoods = item.iid
+          this.$router.push('/detail/' + this.itemgoods)
+          // console.log(this.goodslist)
+        },
+        showImages(index){
+          return this.goodslist[index].image || this.goodslist[index].show.img
+        },
+      },
+      computed:{
+
       },
     }
 </script>

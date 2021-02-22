@@ -6,7 +6,7 @@ const Home=() =>import('../pages/home/Home');
 const Category=() =>import('../pages/category/Category');
 const Cart =()=>import('../pages/cart/Cart');
 const Profile=() =>import('../pages/profile/Profile');
-
+const Detail=() =>import('../pages/detail/detail');
 const routes = [
   {
     path:'',
@@ -15,6 +15,7 @@ const routes = [
   {
     path:'/home',
     component:Home,
+    meta:{keepAlive:true,}
   },
   {
     path:'/category',
@@ -28,6 +29,12 @@ const routes = [
   {
     path:'/profile',
     component:Profile,
+  },
+  {
+    path:'/detail/:iid',
+    component:Detail,
+    name: 'Detail',
+
   },
 ]
 

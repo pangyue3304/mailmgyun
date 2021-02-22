@@ -17,5 +17,24 @@ export  default {
         }
       });
     }
-  }
+  },
+  detail:{
+    getItem(iid){
+      return request({
+        url:'/detail',
+        params:{
+          iid
+        }
+
+      });
+    },
+   recommend(){
+     return request({
+       url:'/recommend',
+
+
+     });
+   }
+  },
+
 }

@@ -29,7 +29,7 @@
       methods:{
         toggleClass(index){
           this.currentIndex = index;
-          //点击时发送点击事件 传入的参数是index
+          //点击时发送点击事件 传入的参数是index 子传父
           this.$emit('tabClick',index)
         },
 
