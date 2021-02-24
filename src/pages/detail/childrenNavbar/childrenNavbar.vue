@@ -28,7 +28,8 @@
     },
     methods:{
       toggleItem(index){
-        this.currentIndex = index
+        this.currentIndex = index;
+        this.$emit('childrenavclick',index)
       },
     }
 

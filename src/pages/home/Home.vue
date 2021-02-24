@@ -29,7 +29,7 @@
         <goodsList :goods="FeatureGoods"></goodsList>
       </Scroll>
 <!--    使用native给组件添加点击事件在使用组件的页面中-->
-     <backtop @click.native="backClick" v-show="isShowBackTop"></backtop>
+     <BackTop @click.native="backClick" v-show="isShowBackTop"></BackTop>
 
 
 
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import {itemListMixin} from "../../assets/js/mixin";
+  import {itemListMixin,backTopMixin} from "../../assets/js/mixin";
   import goodsList from '../../components/content/goodsList/GoodsList'
   import {debounce} from "../../components/common/debounce/debounce";
   import HomeSwiper from "./childrenComponents/HomeSwiper";
@@ -51,7 +51,7 @@
   import TabBar from "../../components/common/tabber/TabBar";
   import TabContral from "../../components/content/tabControl/TabContral";
   // import Goods from "../../components/content/goods/Goods";
-  import backtop from  "../../components/content/backtop/BackTop";
+
   // import goodsTiem from "../../components/content/goods/goodsTiem";
   import Scroll from "../../components/common/scroll/Scroll";
   import { createNamespacedHelpers} from 'vuex';
@@ -70,7 +70,7 @@
           },
           currentType:0,
           scroll:null,
-          isShowBackTop:false,
+          // isShowBackTop:false,
           csList:[ 'pop' ],
           isTabFixed:false,
           isTabHeight:0,
@@ -78,10 +78,10 @@
           itemImgListener: null
         }
       },
-      mixins:[itemListMixin],
+      mixins:[itemListMixin,backTopMixin],
       components:{NavBar,HomeSwiper,
         HomeRecomedView,
-        MainTabber,HomeFeatureView,TabBar,TabContral,Scroll,backtop,goodsList
+        MainTabber,HomeFeatureView,TabBar,TabContral,Scroll,goodsList
       },
       computed:{
         ...mapState(['FeatureGoods']),
@@ -139,10 +139,10 @@
 
           this.$refs.scroll.finishPullUp()
         },
-        backClick(){
-          //调用组件内的方法（设定refs）
-          this.$refs.scroll.scrollTo(0,0)
-        },
+        // backClick(){
+        //   //调用组件内的方法（设定refs）
+        //   this.$refs.scroll.scrollTo(0,0,300)
+        // },
         //在图片加载完成之后获取top，使用swiper发射的img加载完成的事件
         //获取tabcontrol的offsettop
         //所有组件都有一个属性$el,用于获取组件中的元素
@@ -171,6 +171,7 @@
       },
 
       activated() {
+        //只有在缓存的时候执行
         this.$refs.scroll.scrollTo(0,this.saveY,0);
         console.log(this.$refs.scroll)
         this.$refs.scroll.refresh()
